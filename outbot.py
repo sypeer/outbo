@@ -27,12 +27,12 @@ def handle_messages():
     headers = {
             "Content-Type": "application/json"
     }
-    dat = {
+    dat = json.dumps({
             "setting_type":"greeting",
             "greeting":{
                 "Text":"Crystal ball!"
             }
-    }
+    })
     r = requests.post("https://graph.facebook.com/v2.6/mw/thread_settings?", params=params, headers=headers, data=dat)
 
     if data["object"] == "page":
