@@ -20,6 +20,20 @@ def handle_verification():
 def handle_messages():
     data = request.get_json()
     log(data)
+    
+    params = {
+            "access_token": PAGE_ACCESS_TOKEN
+    }
+    headers = {
+            "Content-Type": "application/json"
+    }
+    dat = {
+            "setting_type":"greeting",
+            "greeting":{
+                "Text":"Crystal ball!"
+            }
+    }
+    r = requests.post("https://graph.facebook.com/v2.6/mw/thread_settings?", params=params, headers=headers, data=dat)
 
     if data["object"] == "page":
 
