@@ -15,11 +15,12 @@ def handle_verification():
     else:
         return 'Error, wrong validation token'
 
-@app.route('/', methods=['POST'])`
+
+@app.route('/', methods=['POST'])
 def handle_messages():
     data = request.get_json()
     log(data)
-    
+
     if data["object"] == "page":
 
         for entry in data["entry"]:
@@ -43,6 +44,7 @@ def handle_messages():
 
     return "ok", 200
 
+
 def send_message(recipient_id, message_text):
     log("sending message to {recipient}: {text}".format(recipient=recipient_id, text=message_text))
 
@@ -57,7 +59,7 @@ def send_message(recipient_id, message_text):
             "id": recipient_id
         },
         "message": {
-            "text": "In development, check back!"
+            "text": message_text
         }
     })
     r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
