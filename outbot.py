@@ -15,7 +15,6 @@ def handle_verification():
     else:
         return 'Error, wrong validation token'
 
-
 @app.route('/', methods=['POST'])`
 def handle_messages():
     data = request.get_json()
