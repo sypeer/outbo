@@ -32,7 +32,7 @@ def handle_messages():
                     message_text = messaging_event["message"]["text"]
 
                     send_message(sender_id, message_text)
-                    welcome_msg(sender_id)
+                #    welcome_msg(sender_id)
 
                 if messaging_event.get("delivery"):
                     pass
@@ -73,7 +73,7 @@ def log(message):  # Wrapper for logging to stdout on heroku
     print str(message)
     sys.stdout.flush()
 
-def welcome_msg(sender):
+'''def welcome_msg(sender):
     log("Sending wecome message to {sender}".format(sender=sender))
     
     params = {
@@ -97,7 +97,7 @@ def welcome_msg(sender):
     r = requests.post("https://graph.facebook.com/v2.6/m2/messages", params=params, data=payload)
     if r.status_code != 200:
         log(r.status_code)
-    log(r.text)
+    log(r.text)'''
 
 
 if __name__ == '__main__':
