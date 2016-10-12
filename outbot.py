@@ -16,22 +16,7 @@ def handle_verification():
         return 'Error, wrong validation token'
 
 
-@app.route('/', methods=['POST'])
-def greeting():
-    params = {
-            "access_token": PAGE_ACCESS_TOKEN
-    }
-    headers = {
-            "Content-Type": "application/json"
-    }
-    dat = json.dumps({
-            "setting_type":"greeting",
-            "greeting":{
-                "Text":"Crystal ball!"
-            }
-    })
-    r = requests.post("https://graph.facebook.com/v2.6/mw/thread_settings?", params=params, headers=headers, data=dat)
-
+@app.route('/', methods=['POST'])`
 def handle_messages():
     data = request.get_json()
     log(data)
