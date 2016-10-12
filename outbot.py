@@ -17,10 +17,7 @@ def handle_verification():
 
 
 @app.route('/', methods=['POST'])
-def handle_messages():
-    data = request.get_json()
-    log(data)
-    
+def greeting():
     params = {
             "access_token": PAGE_ACCESS_TOKEN
     }
@@ -35,6 +32,10 @@ def handle_messages():
     })
     r = requests.post("https://graph.facebook.com/v2.6/mw/thread_settings?", params=params, headers=headers, data=dat)
 
+def handle_messages():
+    data = request.get_json()
+    log(data)
+    
     if data["object"] == "page":
 
         for entry in data["entry"]:
@@ -57,7 +58,6 @@ def handle_messages():
                     pass
 
     return "ok", 200
-
 
 def send_message(recipient_id, message_text):
     log("sending message to {recipient}: {text}".format(recipient=recipient_id, text=message_text))
