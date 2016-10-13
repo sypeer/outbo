@@ -32,7 +32,6 @@ def handle_messages():
                     message_text = messaging_event["message"]["text"]
 
                     send_message(sender_id, message_text)
-                #    welcome_msg(sender_id)
 
                 if messaging_event.get("delivery"):
                     pass
@@ -73,31 +72,27 @@ def log(message):  # Wrapper for logging to stdout on heroku
     print str(message)
     sys.stdout.flush()
 
-'''def welcome_msg(sender):
-    log("Sending wecome message to {sender}".format(sender=sender))
-    
+def kitten(recipient_id, message_text):
+    log("sending message to {recipient}: {text}".format(recipient=recipient_id, text=message_text))
+
     params = {
         "access_token": PAGE_ACCESS_TOKEN
     }
-
-    msgData = {"setting_type":"call_to_actions", "thread_state":"new_thread", "call_to_actions":[
-        {
-            "message":{
-                "text":"Welcome!"
-                }
-            }]}
-
-    payload = json_dumps({
+    headers = {
+        "Content-Type": "application/json"
+    }
+    data = json.dumps({
         "recipient": {
-            "id": sender
+            "id": recipient_id
         },
-        "message": msgData
-        })
-
-    r = requests.post("https://graph.facebook.com/v2.6/m2/messages", params=params, data=payload)
+        "message": {
+            "text": "meow"+message_text
+        }
+    })
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
     if r.status_code != 200:
         log(r.status_code)
-    log(r.text)'''
+    log(r.text)
 
 
 if __name__ == '__main__':
