@@ -82,20 +82,19 @@ def kitten(recipient_id):
     headers = {
         "Content-Type": "application/json"
     }
-    data = json.dumps({
-        "recipient": {
+    payload = {
+        "recipient": json.dumps({
             "id": recipient_id
-        },
-        "message": {
+        }),
+        "message": json.dumps({
             "attachement": {
-                "type": "image",
+                "type": "url",
                 "payload": {
-                    'url': "http://placekitten.com/g/200/300/",
-                    'is_reusable': True
+                    'url': "http://placekitten.com/g/200/300/"
                            }
                            }
-                }
-        })
+                )}
+            }
         
 
     r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
