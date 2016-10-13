@@ -32,7 +32,7 @@ def handle_messages():
                     message_text = messaging_event["message"]["text"]
 
                     send_message(sender_id, message_text)
-                    kitten(sender_id, message_text)
+                    kitten(sender_id)
 
                 if messaging_event.get("delivery"):
                     pass
@@ -73,9 +73,9 @@ def log(message):  # Wrapper for logging to stdout on heroku
     print str(message)
     sys.stdout.flush()
 
-def kitten(recipient_id, message_text):
+def kitten(recipient_id):
     imageUrl = "http://placekitten.com/200/300"
-    log("sending message to {recipient}: {text}".format(recipient=recipient_id, text=message_text))
+    log("sending message to {recipient}: ".format(recipient=recipient_id))
 
     params = {
         "access_token": PAGE_ACCESS_TOKEN
