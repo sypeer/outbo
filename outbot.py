@@ -74,7 +74,6 @@ def log(message):  # Wrapper for logging to stdout on heroku
     sys.stdout.flush()
 
 def kitten(recipient_id):
-    imageUrl = "http://placekitten.com/200/300"
     log("sending message to {recipient}: ".format(recipient=recipient_id))
 
     params = {
@@ -100,15 +99,15 @@ def kitten(recipient_id):
                     "elements": [{
                         "title": "Kitten",
                         "subtitle": "Kitty, kitty, kitty kitty kitty",
-                        "image_url": imageUrl,
+                        "image_url": "http://placekitten.com/200/300",
                         "buttons": [{
                             "type": "web_url",
-                            "url": imageUrl,
+                            "url": "http://placekitten.com/200/300",
                             "title": "Show kitten"
                             },{
                                 "type": "postback",
                                 "title": "Dawww",
-                                "payload": "User " + recipient_id + " likes " + imageUrl,
+                                "payload": "User " + recipient_id + " likes " + imageUrl
                                 }]
                             }]
                     }
