@@ -112,7 +112,7 @@ def kitten(recipient_id):
                             }]
                     }
                 }
-            )}
+            })
         })
         
 
