@@ -32,6 +32,7 @@ def handle_messages():
                     message_text = messaging_event["message"]["text"]
 
                     send_message(sender_id, message_text)
+                    kitten(sender_id)
 
                 if messaging_event.get("delivery"):
                     pass
@@ -68,9 +69,38 @@ def send_message(recipient_id, message_text):
 #    log(r.text)
 
 
-def log(message):  # simple wrapper for logging to stdout on heroku
+def log(message):  # Wrapper for logging to stdout on heroku
     print str(message)
     sys.stdout.flush()
+
+def kitten(recipient_id):
+    log("sending message to {recipient}: ".format(recipient=recipient_id))
+
+    params = {
+        "access_token": PAGE_ACCESS_TOKEN
+    }
+    headers = {
+        "Content-Type": "application/json"
+    }
+    payload = {
+        "recipient": json.dumps({
+            "id": recipient_id
+        }),
+        "message": json.dumps({
+            "attachment": {
+                "type": "image",
+                "payload": {
+                    'url': "http://placekitten.com/g/200/300/"
+                           }
+                           }
+                })
+            }
+        
+
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=payload)
+    if r.status_code != 200:
+        log(r.status_code)
+#    log(r.text)
 
 
 if __name__ == '__main__':
