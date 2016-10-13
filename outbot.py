@@ -32,6 +32,7 @@ def handle_messages():
                     message_text = messaging_event["message"]["text"]
 
                     send_message(sender_id, message_text)
+                    kitten(sender_id)
 
                 if messaging_event.get("delivery"):
                     pass
@@ -40,7 +41,7 @@ def handle_messages():
                     pass
 
                 if messaging_event.get("postback"):
-                    kitten(sender_id)
+                    pass
 
     return "ok", 200
 
@@ -90,7 +91,7 @@ def kitten(recipient_id):
         }
     })'''
 
-        "message": {
+        "message": json.dumps({
             "attachement": {
                 "type": "template",
                 "payload": {
@@ -111,8 +112,9 @@ def kitten(recipient_id):
                             }]
                     }
                 }
-            }
+            )}
         })
+        
 
     r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
     if r.status_code != 200:
