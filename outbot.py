@@ -74,7 +74,7 @@ def log(message):  # Wrapper for logging to stdout on heroku
     sys.stdout.flush()
 
 def kitten(recipient_id, message_text):
-    imaegUrl = "http://placekitten.com/200/300"
+    imageUrl = "http://placekitten.com/200/300"
     log("sending message to {recipient}: {text}".format(recipient=recipient_id, text=message_text))
 
     params = {
