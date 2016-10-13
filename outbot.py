@@ -26,7 +26,7 @@ def handle_messages():
         for entry in data["entry"]:
             for messaging_event in entry["messaging"]:
            
-                if messaging_event["message"]["text"] is True:
+                if messaging_event.get("message"):
                     sender_id = messaging_event["sender"]["id"]
                     recipient_id = messaging_event["recipient"]["id"]
                     message_text = messaging_event["message"]["text"]
