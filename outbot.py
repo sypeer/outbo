@@ -25,14 +25,17 @@ def handle_messages():
 
         for entry in data["entry"]:
             for messaging_event in entry["messaging"]:
-
+           
                 if messaging_event.get("message"):
-                    sender_id = messaging_event["sender"]["id"]
-                    recipient_id = messaging_event["recipient"]["id"]
-                    message_text = messaging_event["message"]["text"]
+                    if messaging_event["message"]["text"] is True:
+                        sender_id = messaging_event["sender"]["id"]
+                        recipient_id = messaging_event["recipient"]["id"]
+                        message_text = messaging_event["message"]["text"]
 
-                    send_message(sender_id, message_text)
-                    kitten(sender_id)
+                        send_message(sender_id, message_text)
+                        kitten(sender_id)
+                    else:
+                        pass
 
                 if messaging_event.get("delivery"):
                     pass
