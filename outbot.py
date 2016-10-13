@@ -86,33 +86,14 @@ def kitten(recipient_id):
         "recipient": {
             "id": recipient_id
         },
-       ''' "message": {
-            "text": "meow "+recipient_id
-        }
-    })'''
-
-        "message": json.dumps({
+        "message": {
             "attachement": {
                 "type": "template",
                 "payload": {
-                    "template_type": "generic",
-                    "elements": [{
-                        "title": "Kitten",
-                        "subtitle": "Kitty, kitty, kitty kitty kitty",
-                        "image_url": "http://placekitten.com/200/300",
-                        "buttons": [{
-                            "type": "web_url",
-                            "url": "http://placekitten.com/200/300",
-                            "title": "Show kitten"
-                            },{
-                                "type": "postback",
-                                "title": "Dawww",
-                                "payload": "User " + recipient_id + " likes " 
-                                }]
-                            }]
-                    }
+                    'url': "http://placekitten.com/g/200/300"
+                           }
+                           }
                 }
-            })
         })
         
 
