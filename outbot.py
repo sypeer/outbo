@@ -32,7 +32,6 @@ def handle_messages():
                     message_text = messaging_event["message"]["text"]
 
                     send_message(sender_id, message_text)
-                    kitten(sender_id)
 
                 if messaging_event.get("delivery"):
                     pass
@@ -41,7 +40,7 @@ def handle_messages():
                     pass
 
                 if messaging_event.get("postback"):
-                    pass
+                    kitten(sender_id)
 
     return "ok", 200
 
