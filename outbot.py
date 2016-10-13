@@ -107,7 +107,7 @@ def kitten(recipient_id):
                             },{
                                 "type": "postback",
                                 "title": "Dawww",
-                                "payload": "User " + recipient_id + " likes " + imageUrl
+                                "payload": "User " + recipient_id + " likes " 
                                 }]
                             }]
                     }
