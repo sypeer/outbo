@@ -87,7 +87,7 @@ def kitten(recipient_id):
             "id": recipient_id
         }),
         "message": json.dumps({
-            "attachement": {
+            "attachment": {
                 "type": "url",
                 "payload": {
                     'url': "http://placekitten.com/g/200/300/"
