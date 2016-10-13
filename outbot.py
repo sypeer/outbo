@@ -74,6 +74,7 @@ def log(message):  # Wrapper for logging to stdout on heroku
     sys.stdout.flush()
 
 def kitten(recipient_id, message_text):
+    imaegUrl = "http://placekitten.com/200/300"
     log("sending message to {recipient}: {text}".format(recipient=recipient_id, text=message_text))
 
     params = {
@@ -90,7 +91,31 @@ def kitten(recipient_id, message_text):
             "text": "meow "+recipient_id
         }
     })
-    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
+
+    message = {
+            "attachement": {
+                "type": "template",
+                "payload": {
+                    "template_type": "generic",
+                    "elements": [{
+                        "title": "Kitten",
+                        "subtitle": "Kitty, kitty, kitty kitty kitty",
+                        "image_url": imageUrl,
+                        "buttons": [{
+                            "type": "web_url",
+                            "url": imageUrl,
+                            "title": "Show kitten"
+                            },{
+                                "type": "postback",
+                                "title": "Dawww",
+                                "payload": "User " + recipient_id + " likes " + imageUrl,
+                                }]
+                            }]
+                    }
+                }
+            }
+
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=message)
     if r.status_code != 200:
         log(r.status_code)
     log(r.text)
