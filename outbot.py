@@ -87,7 +87,7 @@ def kitten(recipient_id, message_text):
             "id": recipient_id
         },
         "message": {
-            "text": "meow"+message_text
+            "text": "meow "+message_text
         }
     })
     r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
