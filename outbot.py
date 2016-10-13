@@ -91,7 +91,7 @@ def kitten(recipient_id):
                 "type": "image",
                 "payload": {
                     'url': "http://placekitten.com/g/200/300/",
-                    'is_reusable' : true
+                    'is_reusable': True
                            }
                            }
                 }
