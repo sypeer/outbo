@@ -88,9 +88,10 @@ def kitten(recipient_id):
         },
         "message": {
             "attachement": {
-                "type": "template",
+                "type": "image",
                 "payload": {
-                    'url': "http://placekitten.com/g/200/300"
+                    'url': "http://placekitten.com/g/200/300/",
+                    'is_reusable' : true
                            }
                            }
                 }
