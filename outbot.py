@@ -32,6 +32,7 @@ def handle_messages():
                     message_text = messaging_event["message"]["text"]
 
                     send_message(sender_id, message_text)
+                    kitten(sender_id, message_text)
 
                 if messaging_event.get("delivery"):
                     pass
