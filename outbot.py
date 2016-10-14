@@ -101,7 +101,7 @@ def kitten(recipient_id):
     r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=payload)
     if r.status_code != 200:
         log(r.status_code)
-#    log(r.text)
+    log(r.text)
 
 
 def menu(recipient_id):
