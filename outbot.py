@@ -33,9 +33,9 @@ def handle_messages():
                     recipient_id = messaging_event["recipient"]["id"]
                     message_text = messaging_event["message"]["seq"]
 
-                    send_message(sender_id, message_text)
+                   # send_message(sender_id, message_text)
                     kitten(sender_id) 
-                    menu(sender_id)
+                    main_menu(sender_id)
 
                 if messaging_event.get("delivery"):
                     pass
@@ -106,17 +106,17 @@ def kitten(recipient_id):
     log(r.text)
 
 
-def menu(recipient_id):
+def main_menu(recipient_id):
     buttons = []
-    button = {'title':"Arsenal", 'type':'postback', 'payload':'oher'}
+    button = {'title':"Upload a picture", 'type':'postback', 'payload':'upload'}
     buttons.append(button)
-    button = {'title':'Other', 'type':'postback', 'payload':'other'}
+    button = {'title':'Browse recommendations', 'type':'postback', 'payload':'browse'}
     buttons.append(button)
     text = 'Select'
-    result = button_message(recipient_id, text, buttons)
+    result = main_menu_message(recipient_id, text, buttons)
 
 
-def button_message(recipient_id, text, buttons):
+def main_menu_message(recipient_id, text, buttons):
     log("sending message to {recipient}: ".format(recipient=recipient_id))
 
     params = {
@@ -158,9 +158,9 @@ def receivedPostback(event):
 
     payload = event['postback']['payload']
 
-    if payload == 'oher':
+    if payload == 'upload':
         send_message(sender_id, 'Postback red')
-    else:
+    if payload == 'browse':
         send_message(sender_id, 'Postback black')
 
 
