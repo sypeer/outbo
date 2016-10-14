@@ -112,7 +112,7 @@ def main_menu(recipient_id):
     buttons.append(button)
     button = {'title':'Browse recommendations', 'type':'postback', 'payload':'browse'}
     buttons.append(button)
-    text = 'Select'
+    text = 'What would you like to do?'
 
     log("sending message to {recipient}: ".format(recipient=recipient_id))
 
@@ -192,6 +192,93 @@ def upload_menu(recipient_id):
     log(r.text)
 
 
+def womens_menu(recipient_id):
+    buttons = []
+    button = {'title':"Tops", 'type':'postback', 'payload':'tops_women'}
+    buttons.append(button)
+    button = {'title':'Bottoms', 'type':'postback', 'payload':'bottoms_women'}
+    buttons.append(button)
+    button = {'title':'Dresses', 'type':'postback', 'payload':'dresses'}
+    buttons.append(button)
+    button = {'title': 'Main menu', 'type':'postback', 'payload':'main'}
+    text = 'What type are you looking for?'
+
+    log("sending message to {recipient}: ".format(recipient=recipient_id))
+
+    params = {
+        "access_token": PAGE_ACCESS_TOKEN
+    }
+    headers = {
+        "Content-Type": "application/json"
+    }
+    payload = {
+            'recipient': json.dumps(
+                {
+                    'id': recipient_id
+                    }
+                ),
+            'message': json.dumps(
+                {
+                    'attachment': {
+                        'type' : 'template',
+                        'payload': {
+                            'template_type': 'button',
+                            'text': text,
+                            'buttons': buttons
+                            }
+                        }
+                    }
+               )
+            }
+
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=payload)
+    if r.status_code != 200:
+        log(r.status_code)
+    log(r.text)
+
+
+def mens_menu(recipient_id):
+    buttons = []
+    button = {'title':"Tops", 'type':'postback', 'payload':'tops_men'}
+    buttons.append(button)
+    button = {'title':'Bottoms', 'type':'postback', 'payload':'bottoms_men'}
+    button = {'title': 'Main menu', 'type':'postback', 'payload':'main'}
+    text = 'What type are you looking for?'
+
+    log("sending message to {recipient}: ".format(recipient=recipient_id))
+
+    params = {
+        "access_token": PAGE_ACCESS_TOKEN
+    }
+    headers = {
+        "Content-Type": "application/json"
+    }
+    payload = {
+            'recipient': json.dumps(
+                {
+                    'id': recipient_id
+                    }
+                ),
+            'message': json.dumps(
+                {
+                    'attachment': {
+                        'type' : 'template',
+                        'payload': {
+                            'template_type': 'button',
+                            'text': text,
+                            'buttons': buttons
+                            }
+                        }
+                    }
+               )
+            }
+
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=payload)
+    if r.status_code != 200:
+        log(r.status_code)
+    log(r.text)
+
+
 def receivedPostback(event):
     sender_id = event['sender']['id']
     recipient_id = event['recipient']['id']
@@ -204,9 +291,9 @@ def receivedPostback(event):
     if payload == 'browse':
         send_message(sender_id, 'Postback black')
     if payload == 'womens':
-        send_message(sender_id, 'Postblack green')
+        womens_menu(sender_id)
     if payload == 'mens':
-        send_message(sender_id, 'Postblack pink')
+        mens_menu(sender_id)
     if payload == 'main':
         main_menu(sender_id)
 
