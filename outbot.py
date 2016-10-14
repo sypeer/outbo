@@ -33,6 +33,7 @@ def handle_messages():
 
                     send_message(sender_id, message_text)
                     kitten(sender_id) 
+                    menu(sender_id)
 
                 if messaging_event.get("delivery"):
                     pass
@@ -73,6 +74,7 @@ def log(message):  # Wrapper for logging to stdout on heroku
     print str(message)
     sys.stdout.flush()
 
+
 def kitten(recipient_id):
     log("sending message to {recipient}: ".format(recipient=recipient_id))
 
@@ -95,12 +97,55 @@ def kitten(recipient_id):
                            }
                 })
             }
-        
 
     r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=payload)
     if r.status_code != 200:
         log(r.status_code)
 #    log(r.text)
+
+
+def menu(recipient_id):
+    buttons = []
+    button = {'title':"Arsenal", 'type':'web_url', 'url':'http://arsenal.com'}
+    buttons.append(button)
+    button = {'title':'Other', 'type':'postback', 'payload':'other'}
+    buttons.append(button)
+    text = 'Select'
+    result = button_message(recipient_id, text, buttons)
+
+
+def button_message(recipient_id, text, buttons):
+    log("sending message to {recipient}: ".format(recipient=recipient_id))
+
+    params = {
+        "access_token": PAGE_ACCESS_TOKEN
+    }
+    headers = {
+        "Content-Type": "application/json"
+    }
+    payload = {
+            'recipient': json.dumps(
+                {
+                    'id': recipient_id
+                    }
+                ),
+            'message': json.dumps(
+                {
+                    'attachment': {
+                        'type' : 'template',
+                        'payload': {
+                            'template_type': 'button',
+                            'text': text,
+                            'buttons': buttons
+                            }
+                        }
+                    }
+                }
+
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=payload)
+    if r.status_code != 200:
+        log(r.status_code)
+    log(r.text)
 
 
 if __name__ == '__main__':
