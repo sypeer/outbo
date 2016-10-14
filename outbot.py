@@ -198,8 +198,6 @@ def womens_menu(recipient_id):
     buttons.append(button)
     button = {'title':'Bottoms', 'type':'postback', 'payload':'bottoms_women'}
     buttons.append(button)
-    button = {'title':'Dresses', 'type':'postback', 'payload':'dresses'}
-    buttons.append(button)
     button = {'title': 'Main menu', 'type':'postback', 'payload':'main'}
     buttons.append(button)
     text = 'What type are you looking for?'
