@@ -156,7 +156,10 @@ def receivedPostback(event):
 
     payload = event['postback']['payload']
 
-    send_message(sender_id, event['postback']).astype(str))
+    if payload == 'other':
+        send_message(sender_id, 'Postback red')
+    else:
+        send_message(sender_id, 'Postback black')
 
 
 if __name__ == '__main__':
