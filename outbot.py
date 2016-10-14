@@ -198,7 +198,7 @@ def receivedPostback(event):
     payload = event['postback']['payload']
 
     if payload == 'upload':
-        send_message(sender_id, 'Postback red')
+        upload_menu(sender_id)
     if payload == 'browse':
         send_message(sender_id, 'Postback black')
     if payload == 'womens':
