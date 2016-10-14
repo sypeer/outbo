@@ -1,3 +1,4 @@
+# Import packages
 from flask import Flask, request
 import requests
 import sys
@@ -5,6 +6,7 @@ import os
 import json
 from Credentials import *
 
+# Initialize app
 app = Flask(__name__)
 
 
@@ -156,7 +158,7 @@ def receivedPostback(event):
 
     payload = event['postback']['payload']
 
-    if payload == 'other':
+    if payload == 'oher':
         send_message(sender_id, 'Postback red')
     else:
         send_message(sender_id, 'Postback black')
