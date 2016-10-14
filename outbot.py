@@ -113,10 +113,10 @@ def main_menu(recipient_id):
     button = {'title':'Browse recommendations', 'type':'postback', 'payload':'browse'}
     buttons.append(button)
     text = 'Select'
-    result = main_menu_message(recipient_id, text, buttons)
+#    result = main_menu_message(recipient_id, text, buttons)
 
 
-def main_menu_message(recipient_id, text, buttons):
+#def main_menu_message(recipient_id, text, buttons):
     log("sending message to {recipient}: ".format(recipient=recipient_id))
 
     params = {
