@@ -156,7 +156,7 @@ def receivedPostback(event):
 
     payload = event['postback']['payload']
 
-    send_message(sender_id, event['postback'])
+    send_message(sender_id, event['postback']).astype(str))
 
 
 if __name__ == '__main__':
