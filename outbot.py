@@ -207,7 +207,7 @@ def receivedPostback(event):
         send_message(sender_id, 'Postblack green')
     if payload == 'mens':
         send_message(sender_id, 'Postblack pink')
-    if payload == 'menu':
+    if payload == 'main':
         main_menu(sender_id)
 
 
