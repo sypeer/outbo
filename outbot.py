@@ -140,7 +140,8 @@ def button_message(recipient_id, text, buttons):
                             }
                         }
                     }
-                }
+               )
+            }
 
     r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=payload)
     if r.status_code != 200:
