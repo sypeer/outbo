@@ -143,6 +143,11 @@ def button_message(recipient_id, text, buttons):
                )
             }
 
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=payload)
+    if r.status_code != 200:
+        log(r.status_code)
+    log(r.text)
+
 
 def receivedPostback(event):
     sender_id = event['sender']['id']
@@ -152,12 +157,6 @@ def receivedPostback(event):
     payload = event['postback']['payload']
 
     send_message(sender_id, 'Postback called')
-
-
-    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=payload)
-    if r.status_code != 200:
-        log(r.status_code)
-    log(r.text)
 
 
 if __name__ == '__main__':
