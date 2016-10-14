@@ -42,7 +42,7 @@ def handle_messages():
                     pass
 
                 if messaging_event.get("postback"):
-                    pass
+                    receivedPostback(messaging_event)
 
     return "ok", 200
 
@@ -142,6 +142,17 @@ def button_message(recipient_id, text, buttons):
                     }
                )
             }
+
+
+def receivedPostback(event):
+    sender_id = event['sender']['id']
+    recipient_id = event['recipient']['id']
+    time = event['timestamp']
+
+    payload = event['postback']['payload']
+
+    send_message(sender_id, 'Postback called')
+
 
     r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=payload)
     if r.status_code != 200:
