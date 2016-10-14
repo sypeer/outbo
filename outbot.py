@@ -108,7 +108,7 @@ def kitten(recipient_id):
 
 def menu(recipient_id):
     buttons = []
-    button = {'title':"Arsenal", 'type':'web_url', 'url':'http://arsenal.com'}
+    button = {'title':"Arsenal", 'type':'postback', 'payload':'oher'}
     buttons.append(button)
     button = {'title':'Other', 'type':'postback', 'payload':'other'}
     buttons.append(button)
