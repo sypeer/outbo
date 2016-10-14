@@ -154,6 +154,8 @@ def upload_menu(recipient_id):
     buttons.append(button)
     button = {'title':'Menswear', 'type':'postback', 'payload':'mens'}
     buttons.append(button)
+    button = {'title':'Main menu', 'type':'postback', 'payload':'main'}
+    buttons.append(button)
     text = 'Are you looking for Womenswear or Menswear?'
 
     log("sending message to {recipient}: ".format(recipient=recipient_id))
@@ -205,6 +207,8 @@ def receivedPostback(event):
         send_message(sender_id, 'Postblack green')
     if payload == 'mens':
         send_message(sender_id, 'Postblack pink')
+    if payload == 'menu':
+        main_menu(sender_id)
 
 
 if __name__ == '__main__':
