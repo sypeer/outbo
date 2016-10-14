@@ -113,10 +113,49 @@ def main_menu(recipient_id):
     button = {'title':'Browse recommendations', 'type':'postback', 'payload':'browse'}
     buttons.append(button)
     text = 'Select'
-#    result = main_menu_message(recipient_id, text, buttons)
+
+    log("sending message to {recipient}: ".format(recipient=recipient_id))
+
+    params = {
+        "access_token": PAGE_ACCESS_TOKEN
+    }
+    headers = {
+        "Content-Type": "application/json"
+    }
+    payload = {
+            'recipient': json.dumps(
+                {
+                    'id': recipient_id
+                    }
+                ),
+            'message': json.dumps(
+                {
+                    'attachment': {
+                        'type' : 'template',
+                        'payload': {
+                            'template_type': 'button',
+                            'text': text,
+                            'buttons': buttons
+                            }
+                        }
+                    }
+               )
+            }
+
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=payload)
+    if r.status_code != 200:
+        log(r.status_code)
+    log(r.text)
 
 
-#def main_menu_message(recipient_id, text, buttons):
+def upload_menu(recipient_id):
+    buttons = []
+    button = {'title':"Womenswear", 'type':'postback', 'payload':'womens'}
+    buttons.append(button)
+    button = {'title':'Menswear', 'type':'postback', 'payload':'mens'}
+    buttons.append(button)
+    text = 'Are you looking for Womenswear or Menswear?'
+
     log("sending message to {recipient}: ".format(recipient=recipient_id))
 
     params = {
@@ -162,6 +201,10 @@ def receivedPostback(event):
         send_message(sender_id, 'Postback red')
     if payload == 'browse':
         send_message(sender_id, 'Postback black')
+    if payload == 'womens':
+        send_message(sender_id, 'Postblack green')
+    if payload == 'mens':
+        send_message(sender_id, 'Postblack pink')
 
 
 if __name__ == '__main__':
