@@ -33,6 +33,10 @@ def handle_messages():
                     recipient_id = messaging_event["recipient"]["id"]
                     message_text = messaging_event["message"]["seq"]
 
+                    if messaging_event['message']['attachments']:
+                        query = messaging_event['message']['attachments']['payload']
+                        send_message(sender_id, query)
+
                    # send_message(sender_id, message_text)
                     kitten(sender_id) 
                     main_menu(sender_id)
@@ -336,10 +340,6 @@ def receivedPostback(event):
         send_message(sender_id, 'Upload picture!')
     if payload == 'bottoms_men':
         send_message(sender_id, 'M Bottoms')
-
-    if attachment_type == 'file':
-        query = payload
-        send_message(sender_id, query)
 
 
 if __name__ == '__main__':
