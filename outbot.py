@@ -335,8 +335,6 @@ def receivedPostback(event):
         send_message(sender_id, 'Upload picture!')
     if payload == 'bottoms_men':
         send_message(sender_id, 'M Bottoms')
-    if payload['url']:
-        send_message(sender_id, payload['url'])
 
 
 if __name__ == '__main__':
