@@ -283,7 +283,7 @@ def womens(recipient_id):
                                     'title': 'Swipe right/left',
                                     'buttons': [
                                         {
-                                            'type': 'postback'
+                                            'type': 'postback',
                                             'title': 'Main menu',
                                             'payload': 'main'
                                             }
