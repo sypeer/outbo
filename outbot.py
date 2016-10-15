@@ -37,7 +37,7 @@ def handle_messages():
                     kitten(sender_id) 
                     main_menu(sender_id)
 
-                if messaging_event.get(['message']['attachments']):
+                if messaging_event.get(['message'][2]) == 'attachments':
                     query = messaging_event['message']['attachments']['payload']
                     send_message(sender_id, query)
 
