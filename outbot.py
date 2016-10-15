@@ -221,7 +221,7 @@ def womens_menu(recipient_id):
                     'attachment': {
                         'type' : 'template',
                         'payload': {
-                            'template_type': 'button',
+                            'template_type': 'generic',
                             'text': text,
                             'buttons': buttons
                             }
