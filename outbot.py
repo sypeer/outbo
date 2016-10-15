@@ -317,7 +317,6 @@ def receivedPostback(event):
     time = event['timestamp']
 
     payload = event['postback']['payload']
-    attachment_type = event['postback']['type']
 
     if payload == 'upload':
         upload_menu(sender_id)
