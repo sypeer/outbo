@@ -280,7 +280,7 @@ def womens(recipient_id):
                                         ]
                                     },
                                 {
-                                    'title': 'Swipe right/left'
+                                    'title': 'Swipe right/left',
                                     'buttons': [
                                         {
                                             'type': 'postback'
