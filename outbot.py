@@ -221,7 +221,7 @@ def womens_menu(recipient_id):
                     'attachment': {
                         'type' : 'template',
                         'payload': {
-                            'template_type': 'generic',
+                            'template_type': 'button',
                             'text': text,
                             'buttons': buttons
                             }
@@ -234,6 +234,72 @@ def womens_menu(recipient_id):
     if r.status_code != 200:
         log(r.status_code)
     log(r.text)
+
+
+def womens(recipient_id): 
+
+    log("sending message to {recipient}: ".format(recipient=recipient_id))
+
+    params = {
+        "access_token": PAGE_ACCESS_TOKEN
+    }
+    headers = {
+        "Content-Type": "application/json"
+    }
+    payload = {
+            'recipient': json.dumps(
+                {
+                    'id': recipient_id
+                    }
+                ),
+            'message': json.dumps(
+                {
+                    'attachment': {
+                        'type' : 'template',
+                        'payload': {
+                            'template_type': 'generic',
+                            'elements': [
+                                {
+                                    'title': 'Swipe left/right',
+                                    'buttons': [
+                                        {
+                                            'type': 'postback',
+                                            'title': 'Tops',
+                                            'payload': 'tops_women'
+                                            },
+                                        {
+                                            'type': 'postback',
+                                            'title': 'Bottoms',
+                                            'payload': 'bottoms_women'
+                                            },
+                                        {
+                                            'type': 'postback',
+                                            'title': 'Dresses',
+                                            'payload': 'dresses'
+                                            }
+                                        ]
+                                    },
+                                {
+                                    'title': 'Swipe right/left'
+                                    'buttons': [
+                                        {
+                                            'type': 'postback'
+                                            'title': 'Main menu',
+                                            'payload': 'main'
+                                            }
+                                        ]
+                            }
+                        }
+                    }
+                }
+               )
+            }
+
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=payload)
+    if r.status_code != 200:
+        log(r.status_code)
+    log(r.text)
+
 
 
 def mens_menu(recipient_id):
@@ -292,11 +358,21 @@ def receivedPostback(event):
     if payload == 'browse':
         send_message(sender_id, 'Postback black')
     if payload == 'womens':
-        womens_menu(sender_id)
-    if payload == 'mens':
+        womens(sender_id)
+    if payload == 'mens'
         mens_menu(sender_id)
     if payload == 'main':
         main_menu(sender_id)
+    if payload == 'tops_womens':
+        send_message(sender_id, 'W Tops')
+    if payload == 'bottoms_women':
+        send_message(sender_id, 'W Bottoms')
+    if payload == 'dresses':
+        send_message(sender_id, 'Dresses')
+    if payload == 'tops_mens':
+        send_message(sender_id, 'M Tops')
+    if payload == 'bottoms_men':
+        send_message(sender_id, 'M Bottoms')
 
 
 if __name__ == '__main__':
