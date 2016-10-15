@@ -360,7 +360,7 @@ def receivedPostback(event):
         send_message(sender_id, 'Postback black')
     if payload == 'womens':
         womens(sender_id)
-    if payload == 'mens'
+    if payload == 'mens':
         mens_menu(sender_id)
     if payload == 'main':
         main_menu(sender_id)
