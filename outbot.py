@@ -36,9 +36,10 @@ def handle_messages():
                    # send_message(sender_id, message_text)
                     kitten(sender_id) 
                     main_menu(sender_id)
- 
-                    query = messaging_event['message']['attachments']['payload']['url']
-                    send_message(sender_id, query)
+                    
+                    if messaging_event['message']['payload']:
+                        query = messaging_event['message']['attachments']['payload']['url']
+                        send_message(sender_id, query)
 
                 if messaging_event.get("delivery"):
                     pass
