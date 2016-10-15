@@ -192,50 +192,6 @@ def upload_menu(recipient_id):
     log(r.text)
 
 
-def womens_menu(recipient_id):
-    buttons = []
-    button = {'title':"Tops", 'type':'postback', 'payload':'tops_women'}
-    buttons.append(button)
-    button = {'title':'Bottoms', 'type':'postback', 'payload':'bottoms_women'}
-    buttons.append(button)
-    button = {'title': 'Main menu', 'type':'postback', 'payload':'main'}
-    buttons.append(button)
-    text = 'What type are you looking for?'
-
-    log("sending message to {recipient}: ".format(recipient=recipient_id))
-
-    params = {
-        "access_token": PAGE_ACCESS_TOKEN
-    }
-    headers = {
-        "Content-Type": "application/json"
-    }
-    payload = {
-            'recipient': json.dumps(
-                {
-                    'id': recipient_id
-                    }
-                ),
-            'message': json.dumps(
-                {
-                    'attachment': {
-                        'type' : 'template',
-                        'payload': {
-                            'template_type': 'button',
-                            'text': text,
-                            'buttons': buttons
-                            }
-                        }
-                    }
-               )
-            }
-
-    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=payload)
-    if r.status_code != 200:
-        log(r.status_code)
-    log(r.text)
-
-
 def womens(recipient_id): 
 
     log("sending message to {recipient}: ".format(recipient=recipient_id))
@@ -260,7 +216,7 @@ def womens(recipient_id):
                             'template_type': 'generic',
                             'elements': [
                                 {
-                                    'title': 'Swipe left/right',
+                                    'title': 'Swipe left/right for more options',
                                     'buttons': [
                                         {
                                             'type': 'postback',
@@ -274,14 +230,19 @@ def womens(recipient_id):
                                             },
                                         {
                                             'type': 'postback',
-                                            'title': 'Dresses',
-                                            'payload': 'dresses'
+                                            'title': 'Main menu',
+                                            'payload': 'main'
                                             }
                                         ]
                                     },
                                 {
-                                    'title': 'Swipe right/left',
+                                    'title': 'Swipe right/left for more options',
                                     'buttons': [
+                                        {
+                                            'type': 'postback',
+                                            'title': 'Dresses',
+                                            'payload': 'dresses'
+                                            },
                                         {
                                             'type': 'postback',
                                             'title': 'Main menu',
