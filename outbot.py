@@ -241,7 +241,9 @@ def mens_menu(recipient_id):
     button = {'title':"Tops", 'type':'postback', 'payload':'tops_men'}
     buttons.append(button)
     button = {'title':'Bottoms', 'type':'postback', 'payload':'bottoms_men'}
+    buttons.append(button)
     button = {'title': 'Main menu', 'type':'postback', 'payload':'main'}
+    buttons.append(button)
     text = 'What type are you looking for?'
 
     log("sending message to {recipient}: ".format(recipient=recipient_id))
