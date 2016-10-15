@@ -314,6 +314,7 @@ def receivedPostback(event):
     time = event['timestamp']
 
     payload = event['postback']['payload']
+    attachment_type = event['postback']['type']
 
     if payload == 'upload':
         upload_menu(sender_id)
@@ -332,9 +333,13 @@ def receivedPostback(event):
     if payload == 'dresses':
         send_message(sender_id, 'Dresses')
     if payload == 'tops_mens':
-        send_message(sender_id, 'M Tops')
+        send_message(sender_id, 'Upload picture!')
     if payload == 'bottoms_men':
         send_message(sender_id, 'M Bottoms')
+
+    if attachment_type == 'file':
+        query = payload
+        send_message(sender_id, query)
 
 
 if __name__ == '__main__':
