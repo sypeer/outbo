@@ -38,7 +38,7 @@ def handle_messages():
                     main_menu(sender_id)
 
                 for event in messaging_event.get('message'):
-                    if event['attachments']:
+                    if event['message']['attachments']:
                         query = event['attachments']['payload']['url']
                         send_message(sender_id, query)
 
