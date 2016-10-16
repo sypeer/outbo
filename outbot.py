@@ -33,7 +33,7 @@ def handle_messages():
                     sender_id = messaging_event["sender"]["id"]
                     recipient_id = messaging_event["recipient"]["id"]
 
-                    if messaging_event['message']['url'] != '':
+                    if messaging_event['message']['url'] is not True:
                         messaging_event = messaging_event['message']['url']
                         senn_message(sender_id, messaging_event)
                     else:
