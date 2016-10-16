@@ -27,12 +27,12 @@ def handle_messages():
 
         for entry in data["entry"]:
 
-            for messaging_event in entry['messaging']['message']:
-                sender_id = entry['messaging']['sender']['id']
-                if messaging_event.get('text'):
+            for mess_event in entry['messaging']['message']:
+                sender_id = messaging['messaging']['sender']['id']
+                if mess_event.get('text'):
                     messaging_text = messaging_event['text']
                     send_message(sender_id, messaging_text)
-                if messaging_event.get('attachments'):
+                if mess_event.get('attachments'):
                     messaging_text = messaging_event['attachments']['type']
                     send_message(sender_if, messaging_text)
                 
