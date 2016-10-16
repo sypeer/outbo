@@ -31,14 +31,15 @@ def handle_messages():
                 if messaging_event.get("message"):
                     sender_id = messaging_event["sender"]["id"]
                     recipient_id = messaging_event["recipient"]["id"]
-                    message_text = messaging_event["message"]["seq"]
+                    message_text = messaging_event["message"]["text"]
 
                    # send_message(sender_id, message_text)
-                    kitten(sender_id) 
-                    main_menu(sender_id)
+                    if message_text:
+                        kitten(sender_id) 
+                        main_menu(sender_id)
 
-                if messaging_event['message']['attachments']:
-                    send_message(sender_id, 'Received')
+                    else:
+                        send_message(sender_id, 'Image')
 
                 if messaging_event.get("delivery"):
                     pass
