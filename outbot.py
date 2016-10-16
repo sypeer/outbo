@@ -35,7 +35,7 @@ def handle_messages():
 
                     if 'attachments' in messaging_event['message']:
                         messag = messaging_event['message']['attachments'][0]
-                        send_message(sender_id, messag)
+                        send_message(sender_id, messag.decode('utf-8', 'replace'))
                     elif 'attachments' not in messaging_event['message']:
                         messag = messaging_event['message']['seq']
                         send_message(sender_id, messag)
