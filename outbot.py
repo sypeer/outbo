@@ -51,7 +51,7 @@ def handle_messages():
           #      if messaging_event.get("optin"):
            #         pass
 
-                else messaging_event.get("postback"):
+                elif messaging_event.get("postback"):
                     receivedPostback(messaging_event)
 
     return "ok", 200
