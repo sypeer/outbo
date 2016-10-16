@@ -40,9 +40,6 @@ def handle_messages():
                     kitten(sender_id) 
                     main_menu(sender_id)
 
-                    else:
-                        send_message(sender_id, 'Image')
-
                 if messaging_event.get("delivery"):
                     pass
 
