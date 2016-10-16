@@ -34,11 +34,11 @@ def handle_messages():
                     recipient_id = messaging_event["recipient"]["id"]
 
                     if 'attachments' in messaging_event['message']:
-                        messaging_event = messaging_event['message']['attachments'][0]
-                        send_message(sender_id, 'Attachment received')
+                        messag = messaging_event['message']['attachments'][0]
+                        send_message(sender_id, messag)
                     elif 'attachments' not in messaging_event['message']:
-                        messaging_event = messaging_event['message']['seq']
-                        send_message(sender_id, messaging_event)
+                        messag = messaging_event['message']['seq']
+                        send_message(sender_id, messag)
                         main_menu(sender_id)
                     else:
                         pass
