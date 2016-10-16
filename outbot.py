@@ -37,7 +37,7 @@ def handle_messages():
                         messaging_event = messaging_event['message']['attachments'][1]
                         send_message(sender_id, 'Attachment received')
                     else:
-                        messaging_event = messaging_event['message']['text']
+                        messaging_event = messaging_event['message'][0]
                         send_message(sender_id, messaging_event)
                     
 
