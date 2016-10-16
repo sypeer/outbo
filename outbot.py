@@ -26,16 +26,23 @@ def handle_messages():
     if data["object"] == "page":
 
         for entry in data["entry"]:
+
+            for messaging_event in entry['messaging']['message']:
+                sender_id = entry['messaging']['sender']['id']
+                if messaging_event.get('text'):
+                    messaging_text = messaging_event['text']
+                    send_message(sender_id, messaging_text)
+                if messaging_event.get('attachments'):
+                    messaging_text = messaging_event['attachments']['type']
+                    send_message(sender_if, messaging_text)
+                
+
             for messaging_event in entry["messaging"]:
            
                 if messaging_event.get("message"):
                     sender_id = messaging_event["sender"]["id"]
                     recipient_id = messaging_event["recipient"]["id"]
-                    for element in messaging_event['message']:
-                        if element.get('text'):
-                            message_text = messaging_event["message"]["text"]
-                        else:
-                            pass
+                    
 
                    # send_message(sender_id, message_text)        
                     kitten(sender_id) 
