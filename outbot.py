@@ -39,13 +39,14 @@ def handle_messages():
                     elif messaging_event['message'][0] is not 'attachments':
                         messaging_event = messaging_event['message']['seq']
                         send_message(sender_id, messaging_event)
+                        main_menu(sender_id)
                     else:
                         pass
                     
 
                    # send_message(sender_id, message_text)        
-                    kitten(sender_id) 
-                    main_menu(sender_id)
+                   # kitten(sender_id) 
+                   # main_menu(sender_id)
 
          #       if messaging_event.get("delivery"):
           #          pass
