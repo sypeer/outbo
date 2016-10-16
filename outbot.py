@@ -345,8 +345,8 @@ def receivedPostback(event):
         send_message(sender_id, 'W Bottoms')
     if payload == 'dresses':
         send_message(sender_id, 'Dresses')
-    if payload == 'tops_mens':
-        send_message(sender_id, 'Upload picture!')
+    if payload == 'tops_men':
+        send_message(sender_id, 'Upload picture now!')
     if payload == 'bottoms_men':
         send_message(sender_id, 'M Bottoms')
 
