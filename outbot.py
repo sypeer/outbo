@@ -35,8 +35,10 @@ def handle_messages():
 
                     if 'attachments' in messaging_event['message']:
                         messag = messaging_event['message']['attachments'][0]
-                        send_message(sender_id, 'Attachment received')
-                        print(messag['payload']['url'])
+                        send_message(sender_id, 'Please wait while the image is being processed...')
+                        url = messag['payload']['url']
+                        send_image_link(sender_id, url)
+
                     elif 'attachments' not in messaging_event['message']:
                         messag = messaging_event['message']['seq']
                         send_message(sender_id, messag)
@@ -350,6 +352,34 @@ def receivedPostback(event):
         send_message(sender_id, 'Upload picture now!')
     if payload == 'bottoms_men':
         send_message(sender_id, 'M Bottoms')
+
+
+def send_image_link(recipient_id, url):
+    log("sending message to {recipient}: ".format(recipient=recipient_id))
+
+    params = {
+        "access_token": PAGE_ACCESS_TOKEN
+    }
+    headers = {
+        "Content-Type": "application/json"
+    }
+    payload = {
+            'recipient': json.dumps(
+                {
+                    'attachment': {
+                        'type': 'image',
+                        'payload': {
+                            'url': url
+                            }
+                        }
+                    }
+                )       
+            }
+    
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=payload)
+    if r.status_code != 200:
+        log(r.status_code)
+    log(r.text)
 
 
 if __name__ == '__main__':
