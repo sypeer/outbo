@@ -36,7 +36,7 @@ def handle_messages():
                     if messaging_event['message']['attachments'] is True:
                         messaging_event = messaging_event['message']['attachments'][1]
                         send_message(sender_id, 'Attachment received')
-                    elif messaging_event['message'][0] is not 'attachments'::
+                    elif messaging_event['message'][0] is not 'attachments':
                         messaging_event = messaging_event['message']['seq']
                         send_message(sender_id, messaging_event)
                     else:
