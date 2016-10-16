@@ -34,9 +34,9 @@ def handle_messages():
                     recipient_id = messaging_event["recipient"]["id"]
 
                     if messaging_event['message']['attachments'] is True:
-                        messaging_event = messaging_event['message']['attachments']
+                        messaging_event = messaging_event['message']['attachments'][1]
                         send_message(sender_id, 'Attachment received')
-                    elif messaging_event['message']['text'] is True:
+                    elif messaging_event['message'][0] == 'text':
                         messaging_event = messaging_event['message']['text']
                         send_message(sender_id, messaging_event)
                     
