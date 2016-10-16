@@ -366,6 +366,11 @@ def send_image_link(recipient_id, url):
     payload = {
             'recipient': json.dumps(
                 {
+                    'id': recipient_id
+                    }
+                ),
+            'message': json.dumps(
+                {
                     'attachment': {
                         'type': 'image',
                         'payload': {
