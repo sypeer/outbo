@@ -33,7 +33,7 @@ def handle_messages():
                     sender_id = messaging_event["sender"]["id"]
                     recipient_id = messaging_event["recipient"]["id"]
 
-                    if messaging_event['message']['attachments'] is not True:
+                    if messaging_event['message']['attachments'] is True:
                         messaging_event = messaging_event['message']['attachments']
                         send_message(sender_id, 'Attachment received')
                     else:
@@ -51,7 +51,7 @@ def handle_messages():
           #      if messaging_event.get("optin"):
            #         pass
 
-                if messaging_event.get("postback"):
+                else messaging_event.get("postback"):
                     receivedPostback(messaging_event)
 
     return "ok", 200
