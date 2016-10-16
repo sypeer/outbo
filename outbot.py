@@ -34,7 +34,7 @@ def handle_messages():
                     recipient_id = messaging_event["recipient"]["id"]
 
                     if messaging_event['message']['attachments'] is not True:
-                        messaging_event = messaging_event['message']['url']
+                        messaging_event = messaging_event['message']['attachments']['url']
                         senn_message(sender_id, messaging_event)
                     else:
                         messaging_event = messaging_event['message']['text']
