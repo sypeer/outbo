@@ -31,10 +31,11 @@ def handle_messages():
                 if messaging_event.get("message"):
                     sender_id = messaging_event["sender"]["id"]
                     recipient_id = messaging_event["recipient"]["id"]
-                    if messaging_event['message']['text'] is None:
-                        message_text = messaging_event["message"]["text"]
-                    else:
-                        pass
+                    for element in messaging_event['message']:
+                        if element.get('text'):
+                            message_text = messaging_event["message"]["text"]
+                        else:
+                            pass
 
                    # send_message(sender_id, message_text)        
                     kitten(sender_id) 
