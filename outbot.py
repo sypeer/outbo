@@ -36,10 +36,11 @@ def handle_messages():
                    # send_message(sender_id, message_text)
                     kitten(sender_id) 
                     main_menu(sender_id)
-
-                if messaging_event['message'].get('attachment'):
-                    image_url = messaging_event['message']['attachment']['payload']['url']
-                    send_message(sender_id, 'Received')
+                
+                for attach in messaging_event['message']:
+                    if attach.get('attachment'):
+                        image_url = attach['attachment']['payload']['url']
+                        send_message(sender_id, 'Received')
 
                 if messaging_event.get("delivery"):
                     pass
