@@ -45,11 +45,11 @@ def handle_messages():
                     kitten(sender_id) 
                     main_menu(sender_id)
 
-                if messaging_event.get("delivery"):
-                    pass
+         #       if messaging_event.get("delivery"):
+          #          pass
 
-                if messaging_event.get("optin"):
-                    pass
+          #      if messaging_event.get("optin"):
+           #         pass
 
                 if messaging_event.get("postback"):
                     receivedPostback(messaging_event)
