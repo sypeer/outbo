@@ -33,9 +33,12 @@ def handle_messages():
                     sender_id = messaging_event["sender"]["id"]
                     recipient_id = messaging_event["recipient"]["id"]
 
-                    for element in messaging_event['message']:
-                        if element.get('text'):
-                            messaging_text = element['text']
+                    if messaging_event['message']['url'] != '':
+                        messaging_event = messaging_event['message']['url']
+                        senn_message(sender_id, messaging_event)
+                    else:
+                        messaging_event = messaging_event['message']['text']
+                        send_message(sender_id, messaging_event)
                     
 
                    # send_message(sender_id, message_text)        
